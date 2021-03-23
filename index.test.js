@@ -1,10 +1,17 @@
 const supertest = require('supertest');
-const {sum, getData} = require('./index')
+const {sum, getData, getData2} = require('./index')
 
-test('/ should return single todo', async () => {
+const firstToDo = { userId: 1, id: 1, title: 'delectus aut autem', completed: false };
+const secondToDo = { userId: 1, id: 2, title: 'quis ut nam facilis et officia qui', completed: false };
+
+test('should return the 1st todo', async () => {
   const data = await getData()
-  expect(data).toEqual({ userId: 1, id: 1, title: 'delectus aut autem', completed: false })
+  expect(data).toEqual(firstToDo)
+})
 
+test('should return the 2nd todo', async () => {
+  const data = await getData2()
+  expect(data).toEqual(secondToDo)
 })
 
 test('adding 1 + 2 = 3', () => {
